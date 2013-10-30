@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper>
+  <nodes>
+    <node id="0" x="188.0" y="309.0"/>
+    <node id="1" x="419.0" y="347.0"/>
+    <node id="2" x="382.0" y="78.0"/>
+    <node id="3" x="586.0" y="79.0"/>
+    <node id="4" x="279.0" y="512.0"/>
+    <node id="4" x="498.0" y="519.0"/>
+  </nodes>
+  <faces>
+    <face>
+      <nodeID id="0"/>
+      <nodeID id="1"/>
+      <nodeID id="2"/>
+    </face>
+    <face>
+      <nodeID id="1"/>
+      <nodeID id="3"/>
+      <nodeID id="2"/>
+    </face>
+    <face>
+      <nodeID id="0"/>
+      <nodeID id="4"/>
+      <nodeID id="1"/>
+    </face>
+    <face>
+      <nodeID id="4"/>
+      <nodeID id="1"/>
+      <nodeID id="4"/>
+    </face>
+  </faces>
+</mapper>
