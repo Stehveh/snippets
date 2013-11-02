@@ -1,5 +1,3 @@
-
-
 package de.hfkbremen.generativegestaltung.physicallybasedmodeling;
 
 
@@ -9,13 +7,14 @@ import teilchen.force.Gravity;
 import teilchen.force.Spring;
 import teilchen.force.ViscousDrag;
 import teilchen.integration.RungeKutta;
-import teilchen.util.AntiOverlap;
+import teilchen.util.Overlap;
 import teilchen.util.StickMan;
 import processing.core.PApplet;
 
 
 /**
- * this demo shows some advanced use of particles, springs and attractors to create stickmen.
+ * this demo shows some advanced use of particles, springs and attractors to
+ * create stickmen.
  */
 public class LessonX04_StickMan
         extends PApplet {
@@ -62,7 +61,7 @@ public class LessonX04_StickMan
     public void draw() {
 
         mPhysics.step(1f / 60f);
-        AntiOverlap.remove(mPhysics.particles());
+        Overlap.resolveOverlap(mPhysics.particles());
 
         /* constraint particles */
         for (int i = 0; i < mPhysics.particles().size(); i++) {
@@ -104,7 +103,7 @@ public class LessonX04_StickMan
         stroke(0, 20);
         for (int i = 0; i < mPhysics.forces().size(); i++) {
             if (mPhysics.forces(i) instanceof Spring) {
-                Spring mySpring = (Spring)mPhysics.forces(i);
+                Spring mySpring = (Spring) mPhysics.forces(i);
                 line(mySpring.a().position().x,
                      mySpring.a().position().y,
                      mySpring.b().position().x,
@@ -125,6 +124,6 @@ public class LessonX04_StickMan
     }
 
     public static void main(String[] args) {
-        PApplet.main(new String[] {LessonX04_StickMan.class.getName()});
+        PApplet.main(new String[]{LessonX04_StickMan.class.getName()});
     }
 }

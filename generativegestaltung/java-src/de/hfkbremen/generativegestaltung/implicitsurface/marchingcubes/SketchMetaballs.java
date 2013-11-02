@@ -1,5 +1,3 @@
-
-
 /**
  * generative gestaltung
  *
@@ -7,6 +5,7 @@
 package de.hfkbremen.generativegestaltung.implicitsurface.marchingcubes;
 
 
+import de.hfkbremen.generativegestaltung.util.PVectorUtil;
 import java.util.Vector;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -90,12 +89,12 @@ public class SketchMetaballs
     }
 
     private void transformGridPoint(PVector p) {
-        p.mult(mMManager.scale());
-        p.div(mMManager.gridsize());
+        PVectorUtil.mult(p, mMManager.scale());
+        PVectorUtil.div(p, mMManager.gridsize());
         p.add(mMManager.translate());
     }
 
     public static void main(String args[]) {
-        PApplet.main(new String[] {SketchMetaballs.class.getName()});
+        PApplet.main(new String[]{SketchMetaballs.class.getName()});
     }
 }

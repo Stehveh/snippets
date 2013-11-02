@@ -1,14 +1,12 @@
-
-
 /**
  * generative gestaltung
  *
  */
-
 package de.hfkbremen.generativegestaltung.implicitsurface.marchingcubes;
 
 
 import controlP5.ControlP5;
+import de.hfkbremen.generativegestaltung.util.PVectorUtil;
 import java.util.Vector;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -72,7 +70,7 @@ public class SketchEnergyField
         for (int i = 0; i < mTriangles.size(); i++) {
             PVector p = mTriangles.get(i);
             /* scale triangles to make them visible. triangle values are returned normalized ( 0 - 1 ) */
-            p.mult(mScale);
+            PVectorUtil.mult(p, mScale);
             p.mult(2);
             p.sub(mScale);
             vertex(p.x, p.y, p.z);
@@ -83,6 +81,6 @@ public class SketchEnergyField
     }
 
     public static void main(String args[]) {
-        PApplet.main(new String[] {SketchEnergyField.class.getName()});
+        PApplet.main(new String[]{SketchEnergyField.class.getName()});
     }
 }

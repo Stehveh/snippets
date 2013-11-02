@@ -1,5 +1,3 @@
-
-
 package de.hfkbremen.generativegestaltung.implicitsurface.marchingsquares;
 
 
@@ -11,7 +9,7 @@ import processing.core.PVector;
 public class MarchingSquares {
 
     /**
-     *  cleaned up version of http://v3ga.free.fr 'liquid balls'
+     * cleaned up version of http://v3ga.free.fr 'liquid balls'
      */
     private static final int[][] mSquareEdge = {{
             0, 1}, {
@@ -70,14 +68,25 @@ public class MarchingSquares {
                         PVector p2 = new PVector();
                         getPoint(pGridValues, pThreshold, x, y, p1, mLine[square_idx][n++]);
                         getPoint(pGridValues, pThreshold, x, y, p2, mLine[square_idx][n++]);
-                        p1.div(mArrayDimensions); /* normalize positions */
-                        p2.div(mArrayDimensions); /* normalize positions */
+
+//                        p1.div(mArrayDimensions); /* normalize positions */
+//                        p2.div(mArrayDimensions); /* normalize positions */
+
+                        div(p1, mArrayDimensions); /* normalize positions */
+                        div(p2, mArrayDimensions); /* normalize positions */
+
                         mLines.add(p1);
                         mLines.add(p2);
                     }
                 }
             }
         }
+    }
+
+    private static void div(PVector p1, PVector p2) {
+        p1.x = 1.0f / p2.x;
+        p1.y = 1.0f / p2.y;
+        p1.z = 1.0f / p2.z;
     }
 
     private static void getPoint(float[][] pGridValues,

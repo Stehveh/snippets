@@ -1,5 +1,3 @@
-
-
 /**
  * generative gestaltung
  *
@@ -8,6 +6,7 @@ package de.hfkbremen.generativegestaltung.implicitsurface.marchingcubes;
 
 
 import controlP5.ControlP5;
+import de.hfkbremen.generativegestaltung.util.PVectorUtil;
 import java.util.Vector;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -34,7 +33,7 @@ public class SketchEvaluateFunction
             for (int y = 0; y < mField[x].length; y++) {
                 for (int z = 0; z < mField[x][y].length; z++) {
                     PVector p = new PVector(x, y, z);
-                    p.div(new PVector(mField.length, mField[x].length, mField[x][y].length));
+                    PVectorUtil.div(p, new PVector(mField.length, mField[x].length, mField[x][y].length));
                     mField[x][y][z] = evaluateFunction(p);
                 }
             }
@@ -63,7 +62,7 @@ public class SketchEvaluateFunction
         for (int i = 0; i < mTriangles.size(); i++) {
             PVector p = mTriangles.get(i);
             /* scale triangles to make them visible. triangle values are returned normalized ( 0 - 1 ) */
-            p.mult(mScale);
+            PVectorUtil.mult(p, mScale);
             p.mult(2);
             p.sub(mScale);
             vertex(p.x, p.y, p.z);
@@ -75,7 +74,7 @@ public class SketchEvaluateFunction
 
     private float evaluateFunction(PVector p) {
         float r = 0.3f;
-        PVector c = new PVector(mouseX / (float)width, mouseY / (float)height, 0.5f);
+        PVector c = new PVector(mouseX / (float) width, mouseY / (float) height, 0.5f);
         float x = (p.x - c.x);
         float y = (p.y - c.y);
         float z = (p.z - c.z);
@@ -86,6 +85,6 @@ public class SketchEvaluateFunction
     }
 
     public static void main(String args[]) {
-        PApplet.main(new String[] {SketchEvaluateFunction.class.getName()});
+        PApplet.main(new String[]{SketchEvaluateFunction.class.getName()});
     }
 }

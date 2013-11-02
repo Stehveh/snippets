@@ -1,19 +1,17 @@
-
-
 /**
  * generative gestaltung
  *
  */
 /*
-Given a grid cell and an isolevel, calculate the triangular
-facets required to represent the isosurface through the cell.
-Return the number of triangular facets, the array "triangles"
-will be loaded up with the vertices at most 5 triangular facets.
-0 will be returned if the grid cell is either totally above
-of totally below the isolevel.
+ Given a grid cell and an isolevel, calculate the triangular
+ facets required to represent the isosurface through the cell.
+ Return the number of triangular facets, the array "triangles"
+ will be loaded up with the vertices at most 5 triangular facets.
+ 0 will be returned if the grid cell is either totally above
+ of totally below the isolevel.
 
-class contains methods for taking 8 points and turning it into a corresponding set of triangles
-taken heavily from http://astronomy.swin.edu.au/~pbourke/modelling/polygonise/
+ class contains methods for taking 8 points and turning it into a corresponding set of triangles
+ taken heavily from http://astronomy.swin.edu.au/~pbourke/modelling/polygonise/
  */
 package de.hfkbremen.generativegestaltung.implicitsurface.marchingcubes;
 
@@ -309,7 +307,7 @@ public class MarchingCubes {
     public static void polygoniseCube(float[] pValues, PVector[] pPositions, float pIsoLevel, Vector<PVector> pTriangleList) {
 
         /* Determine the index into the edge table which
-        tells us which vertices are inside of the surface
+         tells us which vertices are inside of the surface
          */
 
         int cubeindex = 0;
@@ -381,7 +379,9 @@ public class MarchingCubes {
             vertlist[11] = VertexInterp(pIsoLevel, pPositions[3], pPositions[7], pValues[3], pValues[7]);
         }
         /* Create the triangle */
-        /** @todo this should actually create triangles not points! */
+        /**
+         * @todo this should actually create triangles not points!
+         */
         for (int i = 0; mTriTable[cubeindex][i] != -1; i += 3) {
             pTriangleList.add(vertlist[mTriTable[cubeindex][i]].get());
             pTriangleList.add(vertlist[mTriTable[cubeindex][i + 1]].get());
@@ -390,8 +390,9 @@ public class MarchingCubes {
     }
 
     /**
-     * Linearly interpolate the position where an isosurface cuts
-     * an edge between two vertices, each with their own scalar value
+     * Linearly interpolate the position where an isosurface cuts an edge
+     * between two vertices, each with their own scalar value
+     *
      * @param isolevel float
      * @param p1 Point3f
      * @param p2 Point3f
@@ -430,9 +431,9 @@ public class MarchingCubes {
                     positions[7] = new PVector(x, nY, z);
                     /*  normalize XYZ values */
                     for (int i = 0; i < positions.length; i++) {
-                        positions[i].div(new PVector(pGridValues.length,
-                                                     pGridValues[x].length,
-                                                     pGridValues[x][y].length));
+                        positions[i].x /= pGridValues.length;
+                        positions[i].x /= pGridValues[x].length;
+                        positions[i].x /= pGridValues[x][y].length;
                     }
                     values[0] = pGridValues[x][y][nZ];
                     values[1] = pGridValues[nX][y][nZ];

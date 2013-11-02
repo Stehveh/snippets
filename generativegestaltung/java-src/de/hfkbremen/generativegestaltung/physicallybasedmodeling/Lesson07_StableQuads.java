@@ -4,11 +4,11 @@ package de.hfkbremen.generativegestaltung.physicallybasedmodeling;
 import teilchen.Physics;
 import teilchen.force.Gravity;
 import teilchen.force.ViscousDrag;
-import teilchen.util.P5DrawLib;
 import processing.core.PApplet;
 import teilchen.Particle;
 import teilchen.constraint.Box;
 import teilchen.integration.RungeKutta;
+import teilchen.util.DrawLib;
 import teilchen.util.StableSpringQuad;
 
 
@@ -80,12 +80,11 @@ public class Lesson07_StableQuads
 
         /* draw */
         background(255);
-        P5DrawLib.drawSprings(g, mPhysics, color(255, 0, 127, 64));
-        P5DrawLib.drawParticles(g, mPhysics, 12, color(164), color(245));
+        DrawLib.drawSprings(g, mPhysics, color(255, 0, 127, 64));
+        DrawLib.drawParticles(g, mPhysics, 12, color(164), color(245));
     }
 
     public static void main(String[] args) {
-        PApplet.main(new String[] {Lesson07_StableQuads.class.getName()});
+        PApplet.main(new String[]{Lesson07_StableQuads.class.getName()});
     }
 }
-

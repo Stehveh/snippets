@@ -1,10 +1,7 @@
-
-
 /**
  * generative gestaltung
  *
- * recursion
- * tree of life
+ * recursion tree of life
  */
 package de.hfkbremen.generativegestaltung.recursion;
 
@@ -12,7 +9,7 @@ package de.hfkbremen.generativegestaltung.recursion;
 import java.util.Vector;
 import processing.core.PApplet;
 import processing.core.PVector;
-import processing.xml.XMLElement;
+import processing.data.XML;
 
 
 public class SketchTreeOfLife
@@ -30,7 +27,8 @@ public class SketchTreeOfLife
         size(640, 480, OPENGL);
 
         /* parse tree from XML */
-        XMLElement mXML = new XMLElement(this, "generativegestaltung/vertebrata.xml");
+        loadXML(JAVA2D, JAVA2D);
+        XML mXML = loadXML("generativegestaltung/vertebrata.xml");
         mRoot = new TOLNode(mXML.getChild("NODE"), null);
     }
 
@@ -57,7 +55,7 @@ public class SketchTreeOfLife
 
         private final TOLNode mParent;
 
-        public TOLNode(final XMLElement pNodeData, final TOLNode pParent) {
+        public TOLNode(final XML pNodeData, final TOLNode pParent) {
             mParent = pParent;
             mIsLeaf = pNodeData.getString("LEAF").equals("1");
             mName = pNodeData.getChild("NAME").getContent();
@@ -71,10 +69,10 @@ public class SketchTreeOfLife
             }
 
             /* create children */
-            final XMLElement mChildNodes = pNodeData.getChild("NODES");
+            final XML mChildNodes = pNodeData.getChild("NODES");
             if (mChildNodes != null) {
                 for (int i = 0; i < mChildNodes.getChildCount(); i++) {
-                    final XMLElement mChildNode = mChildNodes.getChild(i);
+                    final XML mChildNode = mChildNodes.getChild(i);
                     final TOLNode mChild = new TOLNode(mChildNode, this);
                     mChildren.add(mChild);
                 }
@@ -105,6 +103,6 @@ public class SketchTreeOfLife
     }
 
     public static void main(String[] args) {
-        PApplet.main(new String[] {SketchTreeOfLife.class.getName()});
+        PApplet.main(new String[]{SketchTreeOfLife.class.getName()});
     }
 }

@@ -1,5 +1,3 @@
-
-
 package de.hfkbremen.generativegestaltung.virtualintelligence;
 
 
@@ -8,7 +6,7 @@ import processing.core.PApplet;
 import teilchen.BehaviorParticle;
 import teilchen.Physics;
 import teilchen.behavior.Arrival;
-import teilchen.behavior.VelocityMotor;
+import teilchen.behavior.Motor;
 import teilchen.behavior.Wander;
 
 
@@ -94,7 +92,7 @@ public class WanderAndSeekAgent
     class StateWander
             implements State {
 
-        private VelocityMotor mMotor;
+        private Motor mMotor;
 
         private Wander mWander;
 
@@ -105,7 +103,7 @@ public class WanderAndSeekAgent
             mWander.steeringstrength(20);
             mParticle.behaviors().add(mWander);
 
-            mMotor = new VelocityMotor();
+            mMotor = new Motor();
             mMotor.strength(4);
             mParticle.behaviors().add(mMotor);
         }

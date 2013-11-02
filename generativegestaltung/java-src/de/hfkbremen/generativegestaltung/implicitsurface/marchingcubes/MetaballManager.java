@@ -1,5 +1,3 @@
-
-
 /**
  * generative gestaltung
  *
@@ -7,6 +5,7 @@
 package de.hfkbremen.generativegestaltung.implicitsurface.marchingcubes;
 
 
+import de.hfkbremen.generativegestaltung.util.PVectorUtil;
 import java.util.Vector;
 import processing.core.PVector;
 
@@ -48,19 +47,19 @@ public class MetaballManager {
         // TODO transform matrix?
         for (int i = 0; i < mTriangles.size(); i++) {
             final PVector mPosition = mTriangles.get(i);
-            mPosition.mult(mScale);
+            PVectorUtil.mult(mPosition, mScale);
             mPosition.add(mTranslate);
         }
     }
 
     private void updateGridValues() {
-        mGridValues = new float[(int)mGridSize.x][(int)mGridSize.y][(int)mGridSize.z];
+        mGridValues = new float[(int) mGridSize.x][(int) mGridSize.y][(int) mGridSize.z];
         for (int x = 0; x < mGridValues.length; x++) {
             for (int y = 0; y < mGridValues[x].length; y++) {
                 for (int z = 0; z < mGridValues[x][y].length; z++) {
                     final PVector mPosition = new PVector(x, y, z);
-                    mPosition.mult(mScale);
-                    mPosition.div(mGridSize);  /* normalize XYZ values */
+                    PVectorUtil.mult(mPosition, mScale);
+                    PVectorUtil.div(mPosition, mGridSize);   /* normalize XYZ values */
                     mPosition.add(mTranslate);
                     mGridValues[x][y][z] = getForceFieldValue(mPosition);
                 }

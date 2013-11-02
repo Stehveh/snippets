@@ -5,11 +5,12 @@ import teilchen.Particle;
 import teilchen.Physics;
 import teilchen.force.Spring;
 import processing.core.PApplet;
-import teilchen.util.AntiOverlap;
+import teilchen.util.Overlap;
 
 
 /**
- * this sketch is exactly like Lesson06_Springs, except that it also shows how to remove overlaps.
+ * this sketch is exactly like Lesson06_Springs, except that it also shows how
+ * to remove overlaps.
  */
 public class LessonX01_Overlap
         extends PApplet {
@@ -42,7 +43,7 @@ public class LessonX01_Overlap
         }
 
         /* move overlapping particles away from each other */
-        AntiOverlap.remove(mPhysics.particles());
+        Overlap.resolveOverlap(mPhysics.particles());
 
         /* update the particle system */
         final float mDeltaTime = 1.0f / frameRate;
@@ -56,7 +57,7 @@ public class LessonX01_Overlap
         stroke(255, 0, 127, 64);
         for (int i = 0; i < mPhysics.forces().size(); i++) {
             if (mPhysics.forces().get(i) instanceof Spring) {
-                Spring mSSpring = (Spring)mPhysics.forces().get(i);
+                Spring mSSpring = (Spring) mPhysics.forces().get(i);
                 line(mSSpring.a().position().x, mSSpring.a().position().y,
                      mSSpring.b().position().x, mSSpring.b().position().y);
             }
@@ -72,10 +73,6 @@ public class LessonX01_Overlap
     }
 
     public static void main(String[] args) {
-        PApplet.main(new String[] {LessonX01_Overlap.class.getName()});
+        PApplet.main(new String[]{LessonX01_Overlap.class.getName()});
     }
 }
-
-
-
-
